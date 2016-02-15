@@ -1,0 +1,26 @@
+{
+  "name": "angulartwitter",
+  "version": "1.0.0",
+  "description": "Twitter clone built on angular and firebase.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/derekmorash/AngularTwitter.git"
+  },
+  "author": "Derek Morash",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/derekmorash/AngularTwitter/issues"
+  },
+  "homepage": "https://github.com/derekmorash/AngularTwitter#readme",
+  "devDependencies": {
+    "browser-sync": "^2.11.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-browserify": "^0.5.1",
+    "gulp-sass": "^2.2.0"
+  }
+}
