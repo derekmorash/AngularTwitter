@@ -1,6 +1,7 @@
 var gulp         = require('gulp');
 var browserSync  = require('browser-sync').create();
 var sass         = require('gulp-sass');
+var sourcemaps   = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
 var browserify   = require('gulp-browserify');
 var concat       = require('gulp-concat');
@@ -12,7 +13,8 @@ var sassOptions = {
 };
 
 var autoprefixerOptions = {
-  browsers: ['last 2 versions', '> 5%', 'Firefox ESR']
+  browsers: ['last 2 versions', '> 5%', 'Firefox ESR'],
+  cascade: false
 };
 
 var jsSources = [
@@ -26,7 +28,7 @@ gulp.task('serve', ['sass'], function() {
       server: "./"
   });
 
-  gulp.watch("assets/css/*.sass", ['sass']);
+  gulp.watch(["assets/css/**/*.sass", "assets/css/**/*.scss"], ['sass']);
   gulp.watch("assets/js/**", ['js']);
   gulp.watch("*.html").on('change', browserSync.reload);
   gulp.watch("views/*.html").on('change', browserSync.reload);
@@ -35,15 +37,15 @@ gulp.task('serve', ['sass'], function() {
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
   return gulp.src("assets/css/style.sass")
+    .pipe(sourcemaps.init())
     .pipe(sass(sassOptions).on('error', sass.logError))
-    .pipe(autoprefixer({
-			browsers: ['last 2 versions'],
-			cascade: false
-		}))
+    .pipe(autoprefixer(autoprefixerOptions))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest("assets/css"))
     .pipe(browserSync.stream());
 });
 
+// Compile all js files and auto-inject into browsers
 gulp.task('js', function() {
   return gulp.src(jsSources)
     .pipe(concat('script.js'))
