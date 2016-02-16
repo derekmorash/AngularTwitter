@@ -28,7 +28,7 @@ gulp.task('serve', ['sass'], function() {
       server: "./"
   });
 
-  gulp.watch(["assets/css/**/*.sass", "assets/css/**/*.scss"], ['sass']);
+  gulp.watch(["assets/css/*.scss", "assets/css/**/*.scss"], ['sass']);
   gulp.watch("assets/js/**", ['js']);
   gulp.watch("*.html").on('change', browserSync.reload);
   gulp.watch("views/*.html").on('change', browserSync.reload);
@@ -36,7 +36,7 @@ gulp.task('serve', ['sass'], function() {
 
 // Compile sass into CSS & auto-inject into browsers
 gulp.task('sass', function() {
-  return gulp.src("assets/css/style.sass")
+  return gulp.src("assets/css/style.scss")
     .pipe(sourcemaps.init())
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(autoprefixer(autoprefixerOptions))
