@@ -2,9 +2,10 @@
   width: 100%;
   margin: $small-spacing 0;
 
+  //all main views go inside here
   .main {
     max-width: $break-large;
     margin: 0 auto;
     padding: $small-spacing;
-  }
-}
+  } //.main
+} //.main--wrapper
