@@ -1,10 +1,16 @@
 //colours
 $base-red:              #FC575E;
 $base-blue:             #44BBFF;
+$base-dark-blue:        #112233;
 $base-green:            #66CC99;
+$base-light-gray:       #F9F9F9;
+$base-medium-gray:      #E4E4E4;
+$base-dark-gray:        #2F2F2F;
+$base-black:            #292929;
 
-$base-background-color: #F8F8F8;
-$base-text-color:       #292929;
+$base-background-color: #fff;
+$base-card-background:  #f8f8f8;
+$base-text-color:       $base-black;
 $base-link-color:       $base-blue;
 $base-button-color:     $base-blue;
 
@@ -12,3 +18,8 @@ $base-button-color:     $base-blue;
 $small-spacing:         20px;
 $medium-spacing:        40px;
 $large-spacing:         60px;
+
+//break points
+$small-width:           600px;
+$medium-width:          900px;
+$large-width:           1200px;
