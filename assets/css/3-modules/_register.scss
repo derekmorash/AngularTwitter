@@ -9,5 +9,13 @@
     &:focus {
       background-color: shade($base-green, 20%);
     } //:hover :focus
+
+    &:disabled {
+      background-color: $base-green;
+
+      &:hover {
+        background-color: $base-green;
+      }
+    }
   }
 }

@@ -1,6 +1,7 @@
 <div class="main--register">
   <h3>Register</h3>
-  <form name="myForm" class="register--form" novalidate>
+  <p ng-show="message">{{ message }}</p>
+  <form name="myForm" class="register--form" ng-submit="register()" novalidate>
     <fieldset>
       <input class="register--first-input" type="text" name="firstname" placeholder="First Name" ng-model="user.firstname" ng-required="true">
       <p class="error validationerror" ng-show="myForm.firstname.$invalid && myForm.firstname.$touched">You must enter your first name.</p>
@@ -14,6 +15,6 @@
       <input class="register--password-input" type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true">
       <p class="error validationerror" ng-show="myForm.password.$invalid && myForm.password.$touched">You must enter a password.</p>
     </fieldset>
-    <button type="submit" class="register--submit" ng-disabled="myform.$invalid">Register</button>
+    <button type="submit" class="register--submit" ng-disabled="myForm.$invalid">Register</button>
   </form>
 </div>

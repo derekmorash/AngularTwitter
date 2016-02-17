@@ -15,16 +15,16 @@
     }
   } //.main--login-about
 
-  .main--login-login {
-
-    .login--register {
-      @extend %button;
-      background-color: $base-green;
-
-      &:hover,
-      &:focus {
-        background-color: shade($base-green, 20%);
-      } //:hover :focus
-    } //.login--register
-  } //.main--login-login
+  // .main--login-login {
+  //
+  //   .login--register {
+  //     @extend %button;
+  //     background-color: $base-green;
+  //
+  //     &:hover,
+  //     &:focus {
+  //       background-color: shade($base-green, 20%);
+  //     } //:hover :focus
+  //   } //.login--register
+  // } //.main--login-login
 } //.main .main--login

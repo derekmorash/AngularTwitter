@@ -7,8 +7,8 @@
 
   <div class="main--login-login">
     <h3>Login</h3>
-    <p>{{ user }}</p>
-    <form name="myForm" class="login--form" novalidate>
+    <p ng-show="message">{{ message}}</p>
+    <form name="myForm" class="login--form" ng-submit="login()" novalidate>
 
       <fieldset>
         <input class="login--email-input" type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true">
