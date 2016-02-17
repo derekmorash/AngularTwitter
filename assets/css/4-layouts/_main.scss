@@ -5,7 +5,6 @@
   .main {
     max-width: $break-large;
     margin: 0 auto;
-    height: 2000px;
-    background-color: goldenrod;
+    padding: $small-spacing;
   }
 }
