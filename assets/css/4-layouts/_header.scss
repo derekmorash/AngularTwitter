@@ -63,16 +63,6 @@ header {
             background-color: shade($base-green, 20%);
           }
         } //.header--user-register
-
-        //style the login button red
-        .header--user-login {
-          background-color: $base-red;
-
-          &:hover,
-          &:focus {
-            background-color: shade($base-red, 20%);
-          } //hover, focus
-        } //.user--login
       } //.header--user-list
     } //.header--user
   } //nav

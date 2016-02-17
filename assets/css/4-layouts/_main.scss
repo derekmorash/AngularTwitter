@@ -1,0 +1,11 @@
+.main--wrapper {
+  width: 100%;
+  margin: $small-spacing 0;
+
+  .main {
+    max-width: $break-large;
+    margin: 0 auto;
+    height: 2000px;
+    background-color: goldenrod;
+  }
+}
