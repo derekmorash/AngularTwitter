@@ -6,20 +6,34 @@ header {
     @include outer-container(100%);
     padding: 1rem;
 
+    @media screen and (max-width: $break-small) {
+      padding: 0.4rem;
+    }
+
+    //break the nav in two parts
     .header--branding, .header--user {
       margin: 1rem 0;
       padding: 0;
       display: block;
       float: left;
+      @media screen and (max-width: $break-small) {
+        margin: 0.4rem 0;
+      }
     } //.header--branding, .header--user
 
+    //style the site header branding
     .header--branding {
       a {
+        padding: 2px 0;
         font-size: 1.6rem;
         cursor: pointer;
+        @media screen and (max-width: $break-small) {
+          font-size: 1rem;
+        }
       }
     } //.header--branding
 
+    //styles for the user side of the nav
     .header--user {
       float: right;
       list-style-type: none;
@@ -28,11 +42,19 @@ header {
         float: right;
         margin-left: 1rem;
 
+        @media screen and (max-width: $break-small) {
+          margin-left: 0.6rem;
+        }
+
         //give the user login and register basic button styles
         .header--user-login, .header--user-register {
           @extend %button;
+          @media screen and (max-width: $break-small) {
+            font-size: 0.6rem;
+          }
         } //.user--login, .user--register
 
+        //stye the registration button green
         .header--user-register {
           background-color: $base-green;
 
@@ -40,8 +62,9 @@ header {
           &:focus {
             background-color: shade($base-green, 20%);
           }
-        }
+        } //.header--user-register
 
+        //style the login button red
         .header--user-login {
           background-color: $base-red;
 
