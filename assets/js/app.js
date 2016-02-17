@@ -18,7 +18,3 @@ myApp.config(['$routeProvider', function($routeProvider) {
       redirectTo: '/login'
     });
 }]);
-
-myApp.controller('RegistrationController', ['$scope', function($scope) {
-  $scope.message = "Welcome";
-}]);

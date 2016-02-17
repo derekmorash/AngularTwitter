@@ -3,7 +3,7 @@ var browserSync  = require('browser-sync').create();
 var sass         = require('gulp-sass');
 var sourcemaps   = require('gulp-sourcemaps');
 var autoprefixer = require('gulp-autoprefixer');
-var browserify   = require('gulp-browserify');
+// var browserify   = require('gulp-browserify');
 var concat       = require('gulp-concat');
 
 // variables
@@ -18,8 +18,8 @@ var autoprefixerOptions = {
 };
 
 var jsSources = [
-  'assets/js/first.js',
-  'assets/js/second.js'
+  'assets/js/app.js',
+  'assets/js/controllers/*.js'
 ];
 
 // Static Server + watching scss/html files
@@ -29,7 +29,8 @@ gulp.task('serve', ['sass'], function() {
   });
 
   gulp.watch(["assets/css/*.scss", "assets/css/**/*.scss"], ['sass']);
-  gulp.watch("assets/js/**", ['js']);
+  gulp.watch("assets/js/**/*.js", ['js']);
+  // gulp.watch("assets/js/**").on('change', browserSync.reload);
   gulp.watch("*.html").on('change', browserSync.reload);
   gulp.watch("views/*.html").on('change', browserSync.reload);
 });
@@ -45,11 +46,11 @@ gulp.task('sass', function() {
     .pipe(browserSync.stream());
 });
 
-// Compile all js files and auto-inject into browsers
+//Compile all js files and auto-inject into browsers
 gulp.task('js', function() {
   return gulp.src(jsSources)
     .pipe(concat('script.js'))
-    .pipe(browserify())
+    // .pipe(browserify())
     .pipe(gulp.dest('assets/js'))
     .pipe(browserSync.stream());
 });

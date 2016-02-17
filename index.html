@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
   <head>
     <meta charset="utf-8">
     <title>Angular Twitter</title>
@@ -7,23 +7,15 @@
     <script src="assets/js/lib/angular.min.js" charset="utf-8"></script>
     <script src="assets/js/lib/angular-route.min.js" charset="utf-8"></script>
 
+    <script src="assets/js/script.js" charset="utf-8"></script>
+
     <link rel="stylesheet" href="assets/css/style.css">
   </head>
   <body>
-    <header>
-      <nav>
-        <div class="header--branding"><a ng-href="#/">angularJS</a></div>
-        <ul class="header--user">
-          <li class="header--user-list"><a class="header--user-login" ng-href="#/login">Login</a></li>
-          <li class="header--user-list"><a class="header--user-register" ng-href="#/register">Register</a></li>
-        </ul>
-      </nav>
-    </header>
+    <header class="header" ng-include="'views/nav.html'"></header>
 
     <div class="main--wrapper">
-      <main class="main">
-
-        
+      <main class="main" ng-view>
 
       </main>
     </div>
