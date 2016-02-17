@@ -4,17 +4,23 @@
     <p class="about--blurb">Built with Angular and Firebase.</p>
     <p class="about--author">by <a href="#">Derek Morash</a></p>
   </div>
-  <div class="main--login-login">
-    <fieldset class="login--form">
-      <h3>Login</h3>
-      <input class="login--email-input" type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true">
-      <!-- <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">Must be a valid email.</p> -->
 
-      <input class="login--password-text" type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true">
-      <!-- <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">Password is required.</p> -->
-    </fieldset>
-    <button type="submit" class="login--submit" ng-disabled="myform.$invalid">Login</button>
-    <span>or</span>
-    <a class="login--register" ng-href="#/register">Register</a>
+  <div class="main--login-login">
+    <h3>Login</h3>
+    <p>{{ user }}</p>
+    <form name="myForm" class="login--form" novalidate>
+
+      <fieldset>
+        <input class="login--email-input" type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true">
+        <p class="error validationerror" ng-show="myForm.email.$invalid && myForm.email.$touched">Must be a valid email.</p>
+
+        <input class="login--password-text" type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true">
+        <p class="error validationerror" ng-show="myForm.password.$invalid && myForm.password.$touched">Password is required.</p>
+      </fieldset>
+
+      <button type="submit" class="login--submit" ng-disabled="myForm.$invalid">Login</button>
+      <span>or</span>
+      <a class="login--register" ng-href="#/register">Register</a>
+    </form>
   </div>
 </div>

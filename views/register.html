@@ -1,17 +1,19 @@
 <div class="main--register">
-  <fieldset class="register--form">
-    <h3>Register</h3>
-    <input class="register--first-input" type="text" name="firstname" placeholder="First Name" ng-model="user.firstname" ng-required="true">
-    <!-- <p class="error validationerror" ng-show="myform.firstname.$invalid && myform.firstname.$touched">You must enter your first name.</p> -->
+  <h3>Register</h3>
+  <form name="myForm" class="register--form" novalidate>
+    <fieldset>
+      <input class="register--first-input" type="text" name="firstname" placeholder="First Name" ng-model="user.firstname" ng-required="true">
+      <p class="error validationerror" ng-show="myForm.firstname.$invalid && myForm.firstname.$touched">You must enter your first name.</p>
 
-    <input class="register--last-input" type="text" name="lastname" placeholder="Last Name" ng-model="user.lastname" ng-required="true">
-    <!-- <p class="error validationerror" ng-show="myform.lastname.$invalid && myform.lastname.$touched">You must enter your last name.</p> -->
+      <input class="register--last-input" type="text" name="lastname" placeholder="Last Name" ng-model="user.lastname" ng-required="true">
+      <p class="error validationerror" ng-show="myForm.lastname.$invalid && myForm.lastname.$touched">You must enter your last name.</p>
 
-    <input class="register--email-input" type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true">
-    <!-- <p class="error validationerror" ng-show="myform.email.$invalid && myform.email.$touched">Must be a valid email.</p> -->
+      <input class="register--email-input" type="email" name="email" placeholder="Email" ng-model="user.email" ng-required="true">
+      <p class="error validationerror" ng-show="myForm.email.$invalid && myForm.email.$touched">Must be a valid email.</p>
 
-    <input class="register--password-input" type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true">
-    <!-- <p class="error validationerror" ng-show="myform.password.$invalid && myform.password.$touched">You must enter a password.</p> -->
-  </fieldset>
-  <button type="submit" class="register--submit" ng-disabled="myform.$invalid">Register</button>
+      <input class="register--password-input" type="password" name="password" placeholder="Password" ng-model="user.password" ng-required="true">
+      <p class="error validationerror" ng-show="myForm.password.$invalid && myForm.password.$touched">You must enter a password.</p>
+    </fieldset>
+    <button type="submit" class="register--submit" ng-disabled="myform.$invalid">Register</button>
+  </form>
 </div>

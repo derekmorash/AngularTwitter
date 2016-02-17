@@ -1,3 +1,16 @@
 .error {
   color: red;
+  // margin: 0;
+}
+
+input.ng-invalid.ng-touched {
+  border: 1px solid $base-error;
+}
+
+input.ng-valid.ng-touched {
+  border: 1px solid $base-success;
+}
+
+button.ng-invalid {
+  background: $base-dark-gray;
 }
