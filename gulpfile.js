@@ -19,6 +19,7 @@ var autoprefixerOptions = {
 
 var jsSources = [
   'assets/js/app.js',
+  'assets/js/services/*.js',
   'assets/js/controllers/*.js'
 ];
 
