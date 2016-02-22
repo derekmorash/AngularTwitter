@@ -1,7 +1,10 @@
 <nav>
   <div class="header--branding"><a ng-href="#/">angularJS</a></div>
   <ul class="header--user">
-    <li class="header--user-list"><a class="header--user-login" ng-href="#/login">Login</a></li>
-    <li class="header--user-list"><a class="header--user-register" ng-href="#/register">Register</a></li>
+    <li class="header--user-list" ng-show="currentUser"><a class="header--user-logout" ng-href="#/login" ng-controller="RegistrationController" ng-click="logout()">Logout</a></li>
+    <li class="header--user-list" ng-show="currentUser"><span class="header--user-welcome">Hi {{ currentUser.firstname }}</span></li>
+
+    <li class="header--user-list" ng-hide="currentUser"><a class="header--user-login" ng-href="#/login">Login</a></li>
+    <li class="header--user-list" ng-hide="currentUser"><a class="header--user-register" ng-href="#/register">Register</a></li>
   </ul>
 </nav>

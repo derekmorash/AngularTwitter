@@ -46,8 +46,16 @@ header {
           margin-left: 0.6rem;
         }
 
+        .header--user-welcome {
+          display: inline-block;
+          padding-top: 0.6em;
+          @media screen and (max-width: $break-small) {
+            font-size: 0.6rem;
+          }
+        }
+
         //give the user login and register basic button styles
-        .header--user-login, .header--user-register {
+        .header--user-login, .header--user-register, .header--user-logout {
           @extend %button;
           @media screen and (max-width: $break-small) {
             font-size: 0.6rem;
@@ -61,6 +69,16 @@ header {
           &:hover,
           &:focus {
             background-color: shade($base-green, 20%);
+          }
+        } //.header--user-register
+
+        //stye the logout button red
+        .header--user-logout {
+          background-color: $base-red;
+
+          &:hover,
+          &:focus {
+            background-color: shade($base-red, 20%);
           }
         } //.header--user-register
       } //.header--user-list
