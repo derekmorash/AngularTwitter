@@ -28,6 +28,9 @@ myApp.factory('Authentication',
     var ref = new Firebase(FIREBASE_URL);
     var auth = $firebaseAuth(ref);
 
+    /*
+     *  Check to see if a user is logged in
+     */
     auth.$onAuth(function(authUser) {
       //if the user exists
       if(authUser) {

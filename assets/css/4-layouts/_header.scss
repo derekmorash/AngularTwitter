@@ -1,11 +1,11 @@
 header {
-  background-color: #fff;
   @include outer-container(100%);
   // border-bottom: 1px solid lighten($base-text-color, 60%);
+  background-color: #fff;
   box-shadow: 0 1px 6px lighten($base-text-color, 60%);
 
   nav {
-    @include outer-container(100%);
+    @include outer-container($break-large);
     padding: 0.2rem 1rem;
 
     @media screen and (max-width: $break-small) {
