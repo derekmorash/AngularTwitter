@@ -12,9 +12,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'views/register.html',
       controller: 'RegistrationController'
     }).
-    when('/success', {
-      templateUrl: 'views/success.html',
-      controller: 'SuccessController'
+    when('/feed', {
+      templateUrl: 'views/feed.html',
+      controller: 'FeedController'
     }).
     otherwise({
       redirectTo: '/login'
@@ -42,7 +42,7 @@ myApp.factory('Authentication',
       }
     }); //onAuth
 
-    return {
+    var myObject = {
       /*
        *  Login Method
        *  Takes user input of email and password
@@ -53,7 +53,7 @@ myApp.factory('Authentication',
           email:    user.email,
           password: user.password
         }).then(function(regUser) { //firebase callback promis
-          $location.path('/success');
+          $location.path('/feed');
         }).catch(function(error) { //cath any errors (incorrect password)
           $rootScope.message = error.message;
         });// auth
@@ -87,13 +87,19 @@ myApp.factory('Authentication',
               email:     user.email
             }); //user info
 
-          $rootScope.message = "Hi " + user.firstname + ", thanks for registering";
+          myObject.login(user);
         }).catch(function(error) { //catch any errors from firebase (email already registered)
           $rootScope.message = error.message;
         }); //auth.createUser()
       } //register method
-    }; //return
+    }; //myObject
+
+    return myObject;
   }]); //factory
+
+myApp.controller('FeedController', ['$scope', function($scope) {
+  $scope.message = "Feed!!!";
+}]);
 
 myApp.controller('RegistrationController',
   ['$scope', 'Authentication',

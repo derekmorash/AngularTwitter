@@ -12,9 +12,9 @@ myApp.config(['$routeProvider', function($routeProvider) {
       templateUrl: 'views/register.html',
       controller: 'RegistrationController'
     }).
-    when('/success', {
-      templateUrl: 'views/success.html',
-      controller: 'SuccessController'
+    when('/feed', {
+      templateUrl: 'views/feed.html',
+      controller: 'FeedController'
     }).
     otherwise({
       redirectTo: '/login'
