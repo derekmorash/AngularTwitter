@@ -1,5 +1,9 @@
 .main .main--register {
-  max-width: $break-small;
+  background-color: #fff;
+  padding: 2rem;
+  box-shadow: 0 2px 6px lighten($base-text-color, 60%);
+  border-radius: 0.2em;
+  max-width: $break-medium;
   margin: 0 auto;
 
   button.register--submit {
