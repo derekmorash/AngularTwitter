@@ -47,6 +47,13 @@ myApp.factory('Authentication',
       }, //logout method
 
       /*
+       * Authentication is required
+       */
+      requireAuth: function() {
+        return auth.$requireAuth();
+      }, //requireAuth
+
+      /*
        *  Register Method
        *  Takes user input info
        */

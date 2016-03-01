@@ -1,5 +1,8 @@
 <nav>
-  <div class="header--branding"><a ng-href="#/">angularJS</a></div>
+  <div class="header--branding">
+    <a ng-href="#/" ng-hide="currentUser">angularJS</a>
+    <a ng-href="#/feed" ng-show="currentUser">angularJS</a>
+  </div>
   <ul class="header--user">
     <li class="header--user-list" ng-show="currentUser"><a class="header--user-logout" ng-href="#/login" ng-controller="RegistrationController" ng-click="logout()">Logout</a></li>
     <li class="header--user-list" ng-show="currentUser"><span class="header--user-welcome">Hi {{ currentUser.firstname }}</span></li>

@@ -17,9 +17,6 @@
   } //.main--login-about
 
   .main--login-login {
-    background-color: #fff;
-    padding: 2rem;
-    box-shadow: 0 2px 6px lighten($base-text-color, 60%);
-    border-radius: 0.2em;
+    @extend .card;
   } //.main--login-login
 } //.main .main--login

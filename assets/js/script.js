@@ -2,6 +2,17 @@ var myApp = angular.module('myApp',
   ['ngRoute', 'firebase'])
   .constant('FIREBASE_URL', 'https://angulartwitter.firebaseio.com/');
 
+myApp.run(['$rootScope', '$location',
+  function($rootScope, $location) {
+    $rootScope.$on('$routeChangeError',
+      function(event, next, previous, error) {
+        if(error == 'AUTH_REQUIRED') {
+          $rootScope.message = 'Sorry, you must log in to access this page.';
+          $location.path('/login');
+        } //AUTH REQUIRED
+      }); //event info
+  }]); //run
+
 myApp.config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/login', {
@@ -14,7 +25,12 @@ myApp.config(['$routeProvider', function($routeProvider) {
     }).
     when('/feed', {
       templateUrl: 'views/feed.html',
-      controller: 'FeedController'
+      controller: 'TweetController',
+      resolve: {
+        currentAuth: function(Authentication) {
+          return Authentication.requireAuth();
+        }
+      } //resolve
     }).
     otherwise({
       redirectTo: '/login'
@@ -70,6 +86,13 @@ myApp.factory('Authentication',
       }, //logout method
 
       /*
+       * Authentication is required
+       */
+      requireAuth: function() {
+        return auth.$requireAuth();
+      }, //requireAuth
+
+      /*
        *  Register Method
        *  Takes user input info
        */
@@ -100,14 +123,6 @@ myApp.factory('Authentication',
     return myObject;
   }]); //factory
 
-myApp.controller('FeedController', ['$scope', function($scope) {
-  $scope.message = "Feed!!!";
-}]);
-
-
-// get all tweets
-// if the tweet belongs to current user, add edit and delete buttons. Use onAuth from the authentication factory service
-
 myApp.controller('RegistrationController',
   ['$scope', 'Authentication',
   function($scope, Authentication) {
@@ -127,3 +142,53 @@ myApp.controller('RegistrationController',
     Authentication.register($scope.user);
   }; //register
 }]); //contoller
+
+myApp.controller('TweetController',
+  ['$scope', '$rootScope', '$firebaseAuth', '$firebaseArray', 'FIREBASE_URL',
+  function($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
+
+    var ref = new Firebase(FIREBASE_URL);
+    var auth = $firebaseAuth(ref);
+
+
+    auth.$onAuth(function(authUser) {
+      if(authUser) {
+        //create a reference to where the tweets will be stored
+        var tweetsRef = new Firebase(FIREBASE_URL + 'tweets/');
+        var tweetInfo = $firebaseArray(tweetsRef);
+
+        $scope.tweets = tweetInfo;
+
+        tweetInfo.$loaded().then(function(data) {
+          $rootScope.howManyTweets = tweetInfo.length;
+        }); //make sure tweet data is loaded
+
+        tweetInfo.$watch(function(data) {
+          $rootScope.howManyTweets = tweetInfo.length;
+        }); //watch for changes in tweet count
+
+        //when the addTweet form is submitted
+        $scope.addTweet = function() {
+          //gather the tweet info
+          tweetInfo.$add({
+            userID: $rootScope.currentUser.$id,
+            tweet: $scope.tweet,
+            date: Firebase.ServerValue.TIMESTAMP
+          }).then(function() { //promise from firebase when the tweet is added
+            $scope.tweet = '';
+          }); //promise
+        }; //addTweet
+
+        $scope.deleteTweet = function(key) {
+          tweetInfo.$remove(key);
+        };
+      } //if there is an authenticated user
+    }); //onAuth
+  }]); //FeedController
+
+
+// get all tweets
+// if the tweet belongs to current user, add edit and delete buttons. Use onAuth from the authentication factory service
+
+
+//DELETE button

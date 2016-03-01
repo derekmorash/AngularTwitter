@@ -1,11 +1,17 @@
 .main--wrapper {
   width: 100%;
   margin: $small-spacing 0;
+  @media screen and (max-width: $break-small) {
+    margin: $tiny-spacing 0;
+  }
 
   //all main views go inside here
   .main {
     max-width: $break-large;
     margin: 0 auto;
     padding: $small-spacing;
+    @media screen and (max-width: $break-small) {
+      padding: $tiny-spacing;
+    }
   } //.main
 } //.main--wrapper

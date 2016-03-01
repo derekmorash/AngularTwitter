@@ -1,0 +1,46 @@
+.main .feed {
+  .feed--tweet-add {
+    @extend .card;
+    max-width: $break-small;
+    margin-bottom: 40px;
+  } //tweet--add
+
+  .feed--tweet-sections {
+    @extend .card;
+    max-width: $break-small;
+    margin-top: $small-spacing;
+    background-color: #fff;
+    padding: 0;
+
+    h3 {
+      padding: $medium-spacing $medium-spacing 0;
+
+      @media screen and (max-width: $break-medium) {
+        padding: $small-spacing;
+      }
+      @media screen and (max-width: $break-small) {
+        padding: $tiny-spacing;
+      }
+    }
+    .feed--tweet {
+      padding: $tiny-spacing $medium-spacing;
+
+      @media screen and (max-width: $break-medium) {
+        padding: $small-spacing;
+      }
+      @media screen and (max-width: $break-small) {
+        padding: $tiny-spacing;
+      }
+
+      a {
+        font-size: 1.4rem;
+      }
+
+      p {
+        border-left: 3px solid $base-dark-blue;
+        margin: $small-spacing 0 $tiny-spacing;
+        padding-left: 10px;
+      }
+    }
+  }
+}
