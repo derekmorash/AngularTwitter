@@ -1,0 +1,5 @@
+<div class="feed--tweet" ng-repeat="(key, tweet) in tweets">
+  <a href="#" class="tweet-user">{{ tweet.userID }}</a>
+  <p>{{ tweet.tweet }}</p>
+  <div class="tweet-options"><button class="" ng-show="tweet.userID === currentUser.regUser" ng-click="deleteTweet(key)">Delete</button></div>
+</div>

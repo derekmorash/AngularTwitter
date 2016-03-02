@@ -23,7 +23,7 @@
       }
     }
     .feed--tweet {
-      padding: $tiny-spacing $medium-spacing;
+      padding: $tiny-spacing $medium-spacing $medium-spacing;
 
       @media screen and (max-width: $break-medium) {
         padding: $small-spacing;
@@ -32,8 +32,8 @@
         padding: $tiny-spacing;
       }
 
-      a {
-        font-size: 1.4rem;
+      a.tweet-user {
+        font-size: 1.2rem;
       }
 
       p {

@@ -10,12 +10,8 @@
   </div>
   <div class="feed--tweet-sections">
     <h3>Tweets</h3>
-    <div class="feed--all-tweets"  ng-repeat="(key, tweet) in tweets">
-      <div class="feed--tweet">
-        <a href="">{{ tweet.userID }}</a>
-        <p>{{ tweet.tweet }}</p>
-        <div class="tweet-options"><button class="" ng-show="tweet.userID === currentUser.regUser" ng-click="deleteTweet(key)">Delete</button></div>
-      </div>
+    <div class="feed--all-tweets">
+      <tweet></tweet>
     </div>
   </div>
 </div>

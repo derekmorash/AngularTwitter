@@ -13,14 +13,7 @@ myApp.controller('TweetController',
         var tweetInfo = $firebaseArray(tweetsRef);
 
         $scope.tweets = tweetInfo;
-
-        tweetInfo.$loaded().then(function(data) {
-          $rootScope.howManyTweets = tweetInfo.length;
-        }); //make sure tweet data is loaded
-
-        tweetInfo.$watch(function(data) {
-          $rootScope.howManyTweets = tweetInfo.length;
-        }); //watch for changes in tweet count
+        console.log($scope.tweets);
 
         //when the addTweet form is submitted
         $scope.addTweet = function() {
@@ -39,7 +32,14 @@ myApp.controller('TweetController',
         };
       } //if there is an authenticated user
     }); //onAuth
-  }]); //FeedController
+  }]) //FeedController
+
+.directive('tweet', function() {
+  return {
+    // restrict: 'E',
+    templateUrl: 'views/tweet.html'
+  };
+});
 
 
 // get all tweets
