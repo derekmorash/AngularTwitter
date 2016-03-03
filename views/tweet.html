@@ -1,5 +1,5 @@
-<div class="feed--tweet" ng-repeat="(key, tweet) in tweets">
+<div class="feed--tweet" ng-repeat="(key, tweet) in tweets | orderBy: '-date'">
   <a href="#" class="tweet-user">{{ tweet.userID }}</a>
   <p>{{ tweet.tweet }}</p>
-  <div class="tweet-options"><button class="" ng-show="tweet.userID === currentUser.regUser" ng-click="deleteTweet(key)">Delete</button></div>
+  <div class="tweet-options"><button class="" ng-click="deleteTweet(key)">Delete</button></div>
 </div>
