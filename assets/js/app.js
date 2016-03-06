@@ -25,12 +25,11 @@ myApp.config(['$routeProvider', function($routeProvider) {
     }).
     when('/feed', {
       templateUrl: 'views/feed.html',
-      controller: 'TweetController',
-      resolve: {
-        currentAuth: function(Authentication) {
-          return Authentication.requireAuth();
-        }
-      } //resolve
+      controller: 'TweetController'
+    }).
+    when('/user/:uId', {
+      templateUrl: 'views/userFeed.html',
+      controller: 'UserTweetsController'
     }).
     otherwise({
       redirectTo: '/login'
