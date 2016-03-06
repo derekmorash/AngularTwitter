@@ -154,29 +154,44 @@ function($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
   auth.$onAuth(function(authUser) {
     if(authUser) {
       //create a reference to where the tweets will be stored
+      var userRef = new Firebase(FIREBASE_URL + 'users/');
+      var userInfo = $firebaseArray(userRef);
+
       var tweetsRef = new Firebase(FIREBASE_URL + 'tweets/');
-      var usersRef = new Firebase(FIREBASE_URL + 'users/');
-      var tweetInfo = $firebaseArray(tweetsRef);
-      var usersInfo = $firebaseArray(usersRef);
+      var tweetsInfo = $firebaseArray(tweetsRef);
 
-      console.log(tweetInfo);
 
-      $scope.tweets = [];
 
-      tweetsRef.on("value", function(snapshot) {
-        snapshot.forEach(function(child) {
-          console.log(child.val());
-          $scope.tweets.push(child.val());
+      //fetch list of all tweets
+      tweetsRef.on('value', function(snapshot) {
+        //init an array to hold the tweets
+        var tweetFeed = [];
+        //loop through the list of tweets
+        snapshot.forEach(function(childSnapshot) {
+          //store the userID for each tweet
+          var nextTweet = childSnapshot.val();
+
+          //get the user based on the userID
+          userRef.child(nextTweet.userID).once('value', function(snapshot) {
+            //join the tweet and the user
+            var singleTweet = {
+              user: snapshot.val().firstname,
+              tweet: nextTweet.tweet,
+              date: nextTweet.date
+            };
+            //add the data to the array we initialized
+            tweetFeed.push(singleTweet);
+          });
         });
+        console.log(tweetFeed);
+        $scope.tweetFeed = tweetFeed;
       });
-
-      // $scope.tweets = tweetInfo;
-      $scope.users = usersInfo;
 
       //when the addTweet form is submitted
       $scope.addTweet = function() {
+
         //gather the tweet info
-        tweetInfo.$add({
+        tweetsInfo.$add({
           userID: $rootScope.currentUser.$id,
           tweet: $scope.tweet,
           date: Firebase.ServerValue.TIMESTAMP
