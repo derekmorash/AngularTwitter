@@ -169,15 +169,16 @@ function($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         //loop through the list of tweets
         snapshot.forEach(function(childSnapshot) {
           //store the userID for each tweet
-          var nextTweet = childSnapshot.val();
-
+          var nextTweet = childSnapshot;
           //get the user based on the userID
-          userRef.child(nextTweet.userID).once('value', function(snapshot) {
+          userRef.child(nextTweet.val().userID).once('value', function(snapshot) {
             //join the tweet and the user
             var singleTweet = {
+              userID: snapshot.key(),
               user: snapshot.val().firstname,
-              tweet: nextTweet.tweet,
-              date: nextTweet.date
+              tweet: nextTweet.val().tweet,
+              tweetKey: nextTweet.key(),
+              date: nextTweet.val().date
             };
             //add the data to the array we initialized
             tweetFeed.push(singleTweet);
@@ -186,6 +187,7 @@ function($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
         console.log(tweetFeed);
         $scope.tweetFeed = tweetFeed;
       });
+
 
       //when the addTweet form is submitted
       $scope.addTweet = function() {
