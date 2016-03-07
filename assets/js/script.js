@@ -149,6 +149,32 @@ function($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
   var ref = new Firebase(FIREBASE_URL);
   var auth = $firebaseAuth(ref);
 
+  //fetch list of all tweets
+  ref.child('tweets').on('value', function(snapshot) {
+    //init an array to hold the tweets
+    var tweetFeed = [];
+    //loop through the list of tweets
+    snapshot.forEach(function(childSnapshot) {
+      //store the userID for each tweet
+      var nextTweet = childSnapshot;
+      //get the user based on the userID
+      ref.child('users/' + nextTweet.val().userID).once('value', function(snapshot) {
+        //join the tweet and the user
+        var singleTweet = {
+          userID: snapshot.key(),
+          user: snapshot.val().firstname,
+          tweet: nextTweet.val().tweet,
+          tweetKey: nextTweet.key(),
+          date: nextTweet.val().date
+        };
+        //add the data to the array we initialized
+        tweetFeed.push(singleTweet);
+      });
+    });
+    console.log(tweetFeed);
+    $scope.tweetFeed = tweetFeed;
+  });
+
 
   auth.$onAuth(function(authUser) {
     if(authUser) {
@@ -161,31 +187,7 @@ function($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
 
 
 
-      //fetch list of all tweets
-      tweetsRef.on('value', function(snapshot) {
-        //init an array to hold the tweets
-        var tweetFeed = [];
-        //loop through the list of tweets
-        snapshot.forEach(function(childSnapshot) {
-          //store the userID for each tweet
-          var nextTweet = childSnapshot;
-          //get the user based on the userID
-          userRef.child(nextTweet.val().userID).once('value', function(snapshot) {
-            //join the tweet and the user
-            var singleTweet = {
-              userID: snapshot.key(),
-              user: snapshot.val().firstname,
-              tweet: nextTweet.val().tweet,
-              tweetKey: nextTweet.key(),
-              date: nextTweet.val().date
-            };
-            //add the data to the array we initialized
-            tweetFeed.push(singleTweet);
-          });
-        });
-        console.log(tweetFeed);
-        $scope.tweetFeed = tweetFeed;
-      });
+
 
 
       //when the addTweet form is submitted
@@ -216,15 +218,8 @@ function($scope, $rootScope, $firebaseAuth, $firebaseArray, FIREBASE_URL) {
   return {
     restrict: 'E',
     templateUrl: 'views/tweet.html',
-    controller: function() {
-
-    } //controller
   }; //return
 }); //directive
-
-
-// get all tweets
-// if the tweet belongs to current user, add edit and delete buttons. Use onAuth from the authentication factory service
 
 myApp.controller('UserTweetsController',
 ['$scope', '$rootScope', '$routeParams', '$firebaseArray', 'FIREBASE_URL',
@@ -250,7 +245,6 @@ function($scope, $rootScope, $routeParams, $firebaseArray, FIREBASE_URL) {
       ref.child('users/' + nextTweet.val().userID).once('value', function(snapshot) {
 
         if(snapshot.key() === userPageId) {
-          console.log(snapshot.key());
           //join the tweet and the user
           var singleTweet = {
             userID: snapshot.key(),

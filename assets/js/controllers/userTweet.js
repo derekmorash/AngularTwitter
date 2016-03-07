@@ -22,7 +22,6 @@ function($scope, $rootScope, $routeParams, $firebaseArray, FIREBASE_URL) {
       ref.child('users/' + nextTweet.val().userID).once('value', function(snapshot) {
 
         if(snapshot.key() === userPageId) {
-          console.log(snapshot.key());
           //join the tweet and the user
           var singleTweet = {
             userID: snapshot.key(),

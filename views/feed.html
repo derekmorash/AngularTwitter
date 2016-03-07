@@ -1,6 +1,6 @@
 <!-- <h1>{{ message }}</h1> -->
 <div class="feed">
-  <div class="feed--tweet-add">
+  <div class="feed--tweet-add" ng-show="currentUser">
     <h2>Post Tweet</h2>
     <form name="myForm" class="tweet-form" ng-submit="addTweet()" novalidate>
       <textarea name="new-tweet" placeholder="What do you have to say?" ng-model="tweet"
