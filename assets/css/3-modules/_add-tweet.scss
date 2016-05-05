@@ -10,26 +10,21 @@
     max-width: $break-small;
     margin-top: $small-spacing;
     background-color: #fff;
-    padding: 0;
-
-    h3 {
-      padding: $medium-spacing $medium-spacing 0;
-
-      @media screen and (max-width: $break-medium) {
-        padding: $small-spacing;
-      }
-      @media screen and (max-width: $break-small) {
-        padding: $tiny-spacing;
-      }
+    padding: $medium-spacing $medium-spacing 0;
+    @media screen and (max-width: $break-medium) {
+      padding: $small-spacing;
     }
-    .feed--tweet {
-      padding: $medium-spacing;
+    @media screen and (max-width: $break-small) {
+      padding: $tiny-spacing;
+    }
 
+    .feed--tweet {
+      padding-bottom: $medium-spacing;
       @media screen and (max-width: $break-medium) {
-        padding: $small-spacing;
+        padding-bottom: $small-spacing;
       }
       @media screen and (max-width: $break-small) {
-        padding: $tiny-spacing;
+        padding-bottom: $tiny-spacing;
       }
 
       .feed--tweet-user {
