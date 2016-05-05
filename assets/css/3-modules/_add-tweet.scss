@@ -23,7 +23,7 @@
       }
     }
     .feed--tweet {
-      padding: $tiny-spacing $medium-spacing $medium-spacing;
+      padding: $tiny-spacing $medium-spacing $small-spacing;
 
       @media screen and (max-width: $break-medium) {
         padding: $small-spacing;
@@ -32,14 +32,20 @@
         padding: $tiny-spacing;
       }
 
-      a.tweet-user {
+      .feed--tweet-user {
         font-size: 1.2rem;
       }
+      .feed--tweet-date {
+        display:block;
+        font-size: 0.8rem;
+        color: transparentize($base-text-color, 0.4);
+        margin-bottom: $tiny-spacing;
+      }
 
-      p {
-        border-left: 3px solid $base-dark-blue;
-        margin: $small-spacing 0 $tiny-spacing;
-        padding-left: 10px;
+      .feed--tweet-tweet {
+        border-left: 2px solid transparentize($base-dark-blue, 0.8);
+        margin: 0;
+        padding-left: $tiny-spacing;
         word-wrap: break-word;
       }
     }

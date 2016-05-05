@@ -1,4 +1,5 @@
 <div class="feed--tweet" ng-repeat="(key, tweet) in tweetFeed | orderBy: '-date'">
-  <a ng-href="#/user/{{ tweet.userID }}" class="tweet-user">{{ tweet.user }}</a>
-  <p>{{ tweet.tweet }}</p>
+  <a class="feed--tweet-user" ng-href="#/user/{{ tweet.userID }}" class="tweet-user">{{ tweet.user }}</a>
+  <span class="feed--tweet-date">{{ tweet.date | date }}</span>
+  <p class="feed--tweet-tweet">{{ tweet.tweet }}</p>
 </div>
